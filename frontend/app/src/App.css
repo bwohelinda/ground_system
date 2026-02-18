@@ -1,0 +1,853 @@
+/* ============================================
+   ARENA CRICKET - Beautiful Modern Design
+   ============================================ */
+
+/* Root Variables */
+:root {
+  --primary-green: #10b981;
+  --primary-dark: #059669;
+  --primary-light: #34d399;
+  --secondary-gold: #f59e0b;
+  --secondary-gold-light: #fbbf24;
+  --bg-dark: #0f172a;
+  --bg-darker: #020617;
+  --bg-card: #1e293b;
+  --text-primary: #f8fafc;
+  --text-secondary: #94a3b8;
+  --gradient-green: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  --gradient-gold: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+  --gradient-dark: linear-gradient(180deg, #1e293b 0%, #0f172a 100%);
+  --gradient-hero: linear-gradient(135deg, #064e3b 0%, #0f172a 50%, #1e3a5f 100%);
+  --shadow-glow: 0 0 40px rgba(16, 185, 129, 0.3);
+  --shadow-card: 0 10px 40px rgba(0, 0, 0, 0.3);
+  --shadow-hover: 0 20px 60px rgba(0, 0, 0, 0.4);
+}
+
+/* Global Styles */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background: var(--bg-dark) !important;
+  color: var(--text-primary) !important;
+}
+
+.App {
+  min-height: 100vh;
+  background: var(--gradient-hero);
+  background-attachment: fixed;
+}
+
+/* ============================================
+   NAVIGATION STYLES
+   ============================================ */
+.navbar {
+  background: rgba(15, 23, 42, 0.95) !important;
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(16, 185, 129, 0.2);
+  padding: 1rem 0;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+}
+
+.navbar-brand {
+  font-size: 1.5rem !important;
+  font-weight: 800 !important;
+  background: linear-gradient(90deg, #10b981, #34d399, #10b981);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: shimmer 3s linear infinite;
+}
+
+@keyframes shimmer {
+  0% { background-position: 0% center; }
+  100% { background-position: 200% center; }
+}
+
+.nav-link {
+  color: var(--text-secondary) !important;
+  font-weight: 500;
+  padding: 0.5rem 1.25rem !important;
+  border-radius: 25px;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.nav-link::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: var(--gradient-green);
+  opacity: 0;
+  transition: all 0.3s ease;
+  z-index: -1;
+  border-radius: 25px;
+}
+
+.nav-link:hover {
+  color: var(--text-primary) !important;
+}
+
+.nav-link:hover::before {
+  left: 0;
+  opacity: 0.2;
+}
+
+/* ============================================
+   HERO & PAGE HEADERS
+   ============================================ */
+.page-header {
+  text-align: center;
+  padding: 3rem 0 2rem;
+  position: relative;
+}
+
+.page-header h2 {
+  font-size: 2.5rem;
+  font-weight: 800;
+  background: linear-gradient(90deg, var(--primary-light), var(--secondary-gold));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 0.5rem;
+  text-shadow: 0 0 60px rgba(16, 185, 129, 0.5);
+}
+
+.page-header::after {
+  content: '';
+  display: block;
+  width: 100px;
+  height: 4px;
+  background: var(--gradient-gold);
+  margin: 1rem auto 0;
+  border-radius: 2px;
+}
+
+/* ============================================
+   CARDS (General)
+   ============================================ */
+.card {
+  background: var(--bg-card) !important;
+  border: 1px solid rgba(148, 163, 184, 0.1) !important;
+  color: var(--text-primary) !important;
+}
+
+.card-body {
+  background: transparent !important;
+}
+
+.card-header, .card-footer {
+  background: rgba(15, 23, 42, 0.5) !important;
+  border-color: rgba(148, 163, 184, 0.1) !important;
+}
+
+/* ============================================
+   STADIUM CARDS
+   ============================================ */
+.stadium-card {
+  background: var(--bg-card) !important;
+  border: 1px solid rgba(16, 185, 129, 0.1) !important;
+  border-radius: 20px !important;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  position: relative;
+}
+
+.stadium-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  background: linear-gradient(180deg, transparent 50%, rgba(16, 185, 129, 0.1) 100%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.stadium-card:hover {
+  transform: translateY(-10px) scale(1.02);
+  border-color: rgba(16, 185, 129, 0.4) !important;
+  box-shadow: var(--shadow-glow), var(--shadow-hover);
+}
+
+.stadium-card:hover::before {
+  opacity: 1;
+}
+
+.stadium-card .card-img-top {
+  height: 280px;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.stadium-card:hover .card-img-top {
+  transform: scale(1.05);
+}
+
+.stadium-card .card-body {
+  background: var(--bg-card);
+  padding: 1.5rem;
+  position: relative;
+  z-index: 2;
+}
+
+.stadium-card .card-title {
+  color: var(--text-primary);
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+}
+
+.stadium-card .card-text {
+  color: var(--text-secondary);
+}
+
+.stadium-card .price-tag {
+  display: inline-block;
+  background: var(--gradient-gold);
+  color: #000;
+  font-weight: 700;
+  padding: 0.5rem 1.25rem;
+  border-radius: 25px;
+  margin: 0.75rem 0;
+  box-shadow: 0 4px 15px rgba(245, 158, 11, 0.3);
+}
+
+/* ============================================
+   BUTTONS
+   ============================================ */
+.btn-success {
+  background: var(--gradient-green) !important;
+  border: none !important;
+  font-weight: 600;
+  padding: 0.75rem 2rem !important;
+  border-radius: 30px !important;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
+}
+
+.btn-success::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+  transition: 0.5s;
+}
+
+.btn-success:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(16, 185, 129, 0.5);
+}
+
+.btn-success:hover::before {
+  left: 100%;
+}
+
+.btn-outline-success {
+  border: 2px solid var(--primary-green) !important;
+  color: var(--primary-green) !important;
+  border-radius: 30px !important;
+  font-weight: 600;
+  padding: 0.65rem 1.5rem !important;
+  transition: all 0.3s ease;
+}
+
+.btn-outline-success:hover {
+  background: var(--gradient-green) !important;
+  border-color: transparent !important;
+  color: #fff !important;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(16, 185, 129, 0.4);
+}
+
+.btn-warning {
+  background: var(--gradient-gold) !important;
+  border: none !important;
+  color: #000 !important;
+  font-weight: 600;
+  border-radius: 25px !important;
+}
+
+.btn-danger {
+  background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%) !important;
+  border: none !important;
+  border-radius: 25px !important;
+  box-shadow: 0 4px 15px rgba(239, 68, 68, 0.3);
+}
+
+/* ============================================
+   FORMS & INPUTS
+   ============================================ */
+.form-control, .form-select {
+  background: rgba(30, 41, 59, 0.8) !important;
+  border: 2px solid rgba(148, 163, 184, 0.2) !important;
+  color: var(--text-primary) !important;
+  border-radius: 12px !important;
+  padding: 0.75rem 1rem !important;
+  transition: all 0.3s ease;
+}
+
+.form-control:focus, .form-select:focus {
+  background: rgba(30, 41, 59, 1) !important;
+  border-color: var(--primary-green) !important;
+  box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.15), var(--shadow-glow) !important;
+  outline: none;
+}
+
+.form-control::placeholder {
+  color: var(--text-secondary) !important;
+}
+
+.form-label {
+  color: var(--text-primary);
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.form-check-input:checked {
+  background-color: var(--primary-green) !important;
+  border-color: var(--primary-green) !important;
+}
+
+/* ============================================
+   TABLES
+   ============================================ */
+.table {
+  background: transparent !important;
+  --bs-table-bg: transparent !important;
+  --bs-table-striped-bg: transparent !important;
+  --bs-table-hover-bg: rgba(16, 185, 129, 0.1) !important;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: var(--shadow-card);
+}
+
+.table-dark {
+  background: rgba(15, 23, 42, 0.95) !important;
+}
+
+.table-dark th {
+  background: linear-gradient(90deg, rgba(16, 185, 129, 0.2), transparent) !important;
+  color: var(--primary-light) !important;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  padding: 1rem !important;
+  border: none !important;
+}
+
+.table tbody tr {
+  transition: all 0.3s ease;
+}
+
+.table tbody tr:hover {
+  background: rgba(16, 185, 129, 0.1) !important;
+}
+
+.table td {
+  color: var(--text-primary);
+  padding: 1rem !important;
+  vertical-align: middle;
+  border-color: rgba(148, 163, 184, 0.1) !important;
+}
+
+.table-striped tbody tr:nth-of-type(odd) {
+  background-color: rgba(30, 41, 59, 0.5) !important;
+}
+
+.table-striped tbody tr:nth-of-type(even) {
+  background-color: rgba(15, 23, 42, 0.5) !important;
+}
+
+/* Force dark background on all table elements */
+.table,
+.table thead,
+.table tbody,
+.table tr,
+.table th,
+.table td {
+  background-color: transparent !important;
+  --bs-table-bg: transparent !important;
+  --bs-table-striped-bg: transparent !important;
+}
+
+.table-sm {
+  background: transparent !important;
+}
+
+/* ============================================
+   MODALS
+   ============================================ */
+.modal-content {
+  background: var(--bg-card) !important;
+  border: 1px solid rgba(16, 185, 129, 0.2) !important;
+  border-radius: 20px !important;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5), var(--shadow-glow);
+  backdrop-filter: blur(20px);
+}
+
+.modal-header {
+  border-bottom: 1px solid rgba(148, 163, 184, 0.1) !important;
+  background: rgba(15, 23, 42, 0.5);
+  border-radius: 20px 20px 0 0;
+}
+
+.modal-title {
+  color: var(--primary-light) !important;
+  font-weight: 700;
+}
+
+.modal-body {
+  color: var(--text-primary);
+  padding: 2rem !important;
+}
+
+.modal-footer {
+  border-top: 1px solid rgba(148, 163, 184, 0.1) !important;
+  background: rgba(15, 23, 42, 0.3);
+}
+
+.btn-close {
+  filter: invert(1) !important;
+  opacity: 0.7;
+}
+
+.btn-close:hover {
+  opacity: 1;
+}
+
+/* ============================================
+   BADGES
+   ============================================ */
+.badge {
+  font-weight: 600;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-size: 0.85rem;
+}
+
+.badge.bg-success {
+  background: var(--gradient-green) !important;
+  box-shadow: 0 2px 10px rgba(16, 185, 129, 0.3);
+}
+
+.badge.bg-warning {
+  background: var(--gradient-gold) !important;
+  color: #000 !important;
+}
+
+.badge.bg-danger {
+  background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%) !important;
+}
+
+.badge.bg-info {
+  background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%) !important;
+}
+
+/* ============================================
+   TABS
+   ============================================ */
+.nav-tabs {
+  border: none !important;
+  background: rgba(15, 23, 42, 0.5);
+  border-radius: 15px;
+  padding: 0.5rem;
+  gap: 0.5rem;
+}
+
+.nav-tabs .nav-link {
+  border: none !important;
+  color: var(--text-secondary) !important;
+  border-radius: 10px !important;
+  padding: 0.75rem 1.5rem !important;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.nav-tabs .nav-link:hover {
+  color: var(--primary-light) !important;
+  background: rgba(16, 185, 129, 0.1);
+}
+
+.nav-tabs .nav-link.active {
+  background: var(--gradient-green) !important;
+  color: #fff !important;
+  box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
+}
+
+/* ============================================
+   ALERTS
+   ============================================ */
+.alert {
+  border: none !important;
+  border-radius: 15px !important;
+  padding: 1rem 1.5rem !important;
+}
+
+.alert-info {
+  background: rgba(6, 182, 212, 0.15) !important;
+  color: #22d3ee !important;
+  border-left: 4px solid #06b6d4 !important;
+}
+
+.alert-success {
+  background: rgba(16, 185, 129, 0.15) !important;
+  color: var(--primary-light) !important;
+  border-left: 4px solid var(--primary-green) !important;
+}
+
+.alert-danger {
+  background: rgba(239, 68, 68, 0.15) !important;
+  color: #f87171 !important;
+  border-left: 4px solid #ef4444 !important;
+}
+
+.alert-warning {
+  background: rgba(245, 158, 11, 0.15) !important;
+  color: #fbbf24 !important;
+  border-left: 4px solid #f59e0b !important;
+}
+
+/* ============================================
+   BOOKING SPECIFIC STYLES
+   ============================================ */
+.booking-container {
+  background: var(--bg-card);
+  border-radius: 20px;
+  padding: 2rem;
+  box-shadow: var(--shadow-card);
+  border: 1px solid rgba(16, 185, 129, 0.1);
+}
+
+.time-slot-btn {
+  transition: all 0.3s ease;
+  border-radius: 10px !important;
+  font-weight: 500;
+}
+
+.time-slot-btn.available {
+  background: rgba(16, 185, 129, 0.1);
+  border: 2px solid var(--primary-green) !important;
+  color: var(--primary-light) !important;
+}
+
+.time-slot-btn.available:hover {
+  background: var(--gradient-green);
+  color: #fff !important;
+  transform: scale(1.05);
+}
+
+.time-slot-btn.booked {
+  background: rgba(239, 68, 68, 0.2) !important;
+  border: 2px solid rgba(239, 68, 68, 0.5) !important;
+  color: #f87171 !important;
+  cursor: not-allowed;
+}
+
+/* ============================================
+   PAYMENT CARD STYLES
+   ============================================ */
+.payment-card {
+  background: linear-gradient(135deg, #1e3a5f 0%, #0f172a 100%);
+  border-radius: 20px;
+  padding: 2rem;
+  border: 1px solid rgba(16, 185, 129, 0.2);
+  position: relative;
+  overflow: hidden;
+}
+
+.payment-card::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -50%;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle, rgba(16, 185, 129, 0.1) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+/* ============================================
+   RECEIPT STYLES
+   ============================================ */
+.receipt-container {
+  background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+  border-radius: 15px;
+  padding: 2rem;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+  color: #1e293b;
+}
+
+.receipt-header {
+  text-align: center;
+  border-bottom: 2px dashed #e2e8f0;
+  padding-bottom: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.receipt-header h3 {
+  color: #059669;
+  font-weight: 800;
+}
+
+/* ============================================
+   ADMIN DASHBOARD STYLES
+   ============================================ */
+.admin-header {
+  color: var(--text-primary);
+  font-weight: 800;
+  padding-bottom: 1rem;
+  margin-bottom: 2rem;
+  border-bottom: 3px solid var(--primary-green);
+  position: relative;
+}
+
+.admin-header::after {
+  content: '';
+  position: absolute;
+  bottom: -3px;
+  left: 0;
+  width: 100px;
+  height: 3px;
+  background: var(--gradient-gold);
+}
+
+.stats-card {
+  background: var(--bg-card);
+  border-radius: 15px;
+  padding: 1.5rem;
+  border: 1px solid rgba(16, 185, 129, 0.1);
+  transition: all 0.3s ease;
+}
+
+.stats-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-glow);
+}
+
+.stats-card h3 {
+  color: var(--primary-light);
+  font-size: 2rem;
+  font-weight: 800;
+}
+
+.stats-card p {
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+/* ============================================
+   IMAGE PLACEHOLDER STYLES
+   ============================================ */
+.stadium-placeholder {
+  height: 280px;
+  background: linear-gradient(135deg, var(--primary-dark) 0%, var(--bg-dark) 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.stadium-placeholder::before {
+  content: '';
+  position: absolute;
+  width: 200%;
+  height: 200%;
+  background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%2310b981' fill-opacity='0.1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  animation: patternMove 20s linear infinite;
+}
+
+@keyframes patternMove {
+  0% { transform: translate(0, 0); }
+  100% { transform: translate(-30px, -30px); }
+}
+
+.stadium-placeholder span {
+  color: var(--text-primary);
+  font-size: 1.75rem;
+  font-weight: 800;
+  z-index: 1;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+/* ============================================
+   SPINNER & LOADING
+   ============================================ */
+.spinner-border {
+  width: 3rem;
+  height: 3rem;
+  border-width: 0.3rem;
+}
+
+.spinner-border.text-success {
+  color: var(--primary-green) !important;
+}
+
+/* ============================================
+   CONTAINER OVERRIDES
+   ============================================ */
+.container {
+  max-width: 1200px;
+}
+
+/* ============================================
+   SCROLLBAR STYLES
+   ============================================ */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-darker);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--primary-dark);
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--primary-green);
+}
+
+/* ============================================
+   TEXT UTILITIES
+   ============================================ */
+.text-success {
+  color: var(--primary-light) !important;
+}
+
+.text-muted {
+  color: var(--text-secondary) !important;
+}
+
+.fw-bold {
+  font-weight: 700 !important;
+}
+
+/* ============================================
+   ANIMATIONS
+   ============================================ */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.6;
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.animate-fadeInUp {
+  animation: fadeInUp 0.6s ease forwards;
+}
+
+.animate-pulse {
+  animation: pulse 2s infinite;
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+/* ============================================
+   RESPONSIVE ADJUSTMENTS
+   ============================================ */
+@media (max-width: 768px) {
+  .page-header h2 {
+    font-size: 1.75rem;
+  }
+  
+  .stadium-card .card-img-top {
+    height: 200px;
+  }
+  
+  .btn-success {
+    padding: 0.6rem 1.5rem !important;
+    font-size: 0.9rem;
+  }
+  
+  .nav-tabs {
+    flex-direction: column;
+  }
+  
+  .modal-body {
+    padding: 1rem !important;
+  }
+}
+
+/* ============================================
+   CARD IMAGE CONTAINER FIX
+   ============================================ */
+.card-img-container {
+  overflow: hidden;
+  position: relative;
+}
+
+.card-img-container::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 60%;
+  background: linear-gradient(to top, var(--bg-card), transparent);
+  pointer-events: none;
+}
+
+/* ============================================
+   BOOTSTRAP OVERRIDES - Remove white backgrounds
+   ============================================ */
+.bg-white, .bg-light {
+  background: var(--bg-card) !important;
+}
+
+.text-dark {
+  color: var(--text-primary) !important;
+}
+
+.border {
+  border-color: rgba(148, 163, 184, 0.2) !important;
+}
+
+/* Option elements in select */
+option {
+  background: #1e293b !important;
+  color: #f8fafc !important;
+}

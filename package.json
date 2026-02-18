@@ -1,6 +1,17 @@
 {
-  "dependencies": {
-    "html2canvas": "^1.4.1",
-    "jspdf": "^4.1.0"
+  "name": "ground-system-monorepo",
+  "private": true,
+  "version": "1.0.0",
+  "workspaces": [
+    "frontend/*",
+    "backend"
+  ],
+  "scripts": {
+    "start:backend": "npm --workspace=backend start",
+    "start:frontend": "npm --workspace=frontend/app start",
+    "start:cricket": "npm --workspace=frontend/app start",
+    "start:admin": "npm --workspace=frontend/app start",
+    "start:registration": "npm --workspace=frontend/app start",
+    "install-all": "npm install --workspaces"
   }
 }
